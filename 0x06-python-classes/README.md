@@ -2,6 +2,6 @@
 An introductory project into python classes and objects
 ## File Descriptions
 #
-# TAMIRAT KEBEDE
+# Tinsae Tariku
 #
 
