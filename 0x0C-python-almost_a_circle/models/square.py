@@ -1,64 +1,54 @@
 #!/usr/bin/python3
-"""Define Rectangle Class
-"""
-
-from models.rectangle import Rectangle
+"""Contains `Square` class defination"""
+from .rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Module Representation of Square
-"""
+    """Class inherits from `Rectangle` class"""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialization a Square
+        """Initializes instance attributes
+        Args:
+            size (int): size of rectangle
+            x (int): x axis of rectangle
+            y (int): y axis of the rectangle
+            id (int): id of the rectangle
         """
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """module Square size getter
+        """Retrieves the value of `size`
+        Returns:
+            value of size
         """
         return self.width
 
     @size.setter
     def size(self, value):
-        """module Square size setter
-        """
+        """sets the dimensions of `Square`"""
         self.width = value
         self.height = value
 
-    def __str__(self):
-        """module string represation of square
-        """
-        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(self.id,
-                                                         self.x,
-                                                         self.y,
-                                                         self.width)
-
     def update(self, *args, **kwargs):
-        """module update square
-        """
-        if len(args):
-            for i, arg in enumerate(args):
-                if i == 0:
-                    self.id = arg
-                elif i == 1:
-                    self.size = arg
-                elif i == 2:
-                    self.x = arg
-                elif i == 3:
-                    self.y = arg
+        """Updates the values of the class"""
+        if args and len(args) > 0:
+            keys = ["id", "size", "x", "y"]
+            for i, v in enumerate(args):
+                setattr(self, keys[i], v)
         else:
-            for key, value in kwargs.items():
-                if hasattr(self, key) is True:
-                    setattr(self, key, value)
+            for k, v in kwargs.items():
+                setattr(self, k, v)
 
     def to_dictionary(self):
-        """retrun dictonary
+        """Retrieves all the attributes of class to dictionary
+        Returns:
+            dictionary containing it's attributes
         """
-        return {
-            "id": self.id,
-            "size": self.size,
-            "x": self.x,
-            "y": self.y
+        dictionary = {
+                "id": self.id,
+                "size": self.size,
+                "x": self.x,
+                "y": self.y
         }
+        return dictionary
